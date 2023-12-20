@@ -15,22 +15,22 @@ Timer.setExpirationTime(tmr, 5000)
 
 --Start of Function and Event Scope---------------------------------------------
 
--- Handler function of the timer Timeout event
+---Handler function of the timer Timeout event
 local function handleTimerTimeout()
   print('Timer timeout occurred')
 end
 --Registration of the 'handleTimerTimeout' function to the timers 'OnExpired' event
 Timer.register(tmr, 'OnExpired', handleTimerTimeout)
 
--- Handler function is called when the conveyor timeout expires
+---Handler function is called when the conveyor timeout expires
 local function handleConveyorTimeout()
   print('Conveyor timeout occurred')
 end
 --Registration of the 'handleConveyorTimeout' function to the conveyor 'OnExpired' event
 Conveyor.Timeout.register(conveyor, 'OnExpired', handleConveyorTimeout)
 
--- The timer and conveyor count are started after the "Engine.OnStarted" event occurred
--- this prevents that the timeout events happen, before the device is ready.
+---The timer and conveyor count are started after the "Engine.OnStarted" event occurred
+---this prevents that the timeout events happen, before the device is ready.
 local function main()
   Conveyor.Timeout.startCount(conveyor, 1000)
   -- Make the increment change by +1000 manually; this should trigger the handler function
